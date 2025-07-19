@@ -17,8 +17,8 @@ const HeroSection = () => {
           {/* Search Section */}
           <div className="max-w-2xl mx-auto mb-12">
             <div className="flex flex-col sm:flex-row gap-4">
-              <Input 
-                placeholder="Enter a medication" 
+              <Input
+                placeholder="Enter a medication"
                 className="flex-1 h-14 text-base bg-white border-0 rounded-full px-6 shadow-lg"
               />
               <Button className="h-14 px-8 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-base font-medium">
@@ -29,9 +29,17 @@ const HeroSection = () => {
 
           {/* Popular Searches */}
           <div className="text-left max-w-2xl mx-auto">
-            <h3 className="text-lg font-medium text-slate-700 mb-4">Popular Searches</h3>
+            <h3 className="text-lg font-medium text-slate-700 mb-4">
+              Popular Searches
+            </h3>
             <div className="flex flex-wrap gap-3">
-              {["Ozempic", "Atorvastatin", "Wegovy", "Tadalafil (Cialis)", "Eliquis"].map((med) => (
+              {[
+                "Ozempic",
+                "Atorvastatin",
+                "Wegovy",
+                "Tadalafil (Cialis)",
+                "Eliquis",
+              ].map((med) => (
                 <Button
                   key={med}
                   variant="outline"
