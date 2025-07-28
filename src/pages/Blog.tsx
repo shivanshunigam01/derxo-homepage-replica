@@ -40,7 +40,7 @@ const Blog = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://localhost:5000/api/blogs?page=${currentPage}&limit=${limit}`
+          `https://derxo-backend-working.onrender.com/api/blogs?page=${currentPage}&limit=${limit}`
         );
         if (!response.ok) throw new Error("Failed to fetch blogs");
         const data = await response.json();

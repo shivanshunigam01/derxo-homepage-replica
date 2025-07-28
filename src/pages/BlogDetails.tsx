@@ -39,7 +39,9 @@ const BlogDetail = () => {
       try {
         setLoading(true);
         // Assuming you have a single blog endpoint
-        const response = await fetch(`http://localhost:5000/api/blogs/${id}`);
+        const response = await fetch(
+          `https://derxo-backend-working.onrender.com/api/blogs/${id}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch blog details");
         }
@@ -64,7 +66,7 @@ const BlogDetail = () => {
   const fetchRelatedBlogs = async (category) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/blogs?page=1&limit=3`
+        `https://derxo-backend-working.onrender.com/api/blogs?page=1&limit=3`
       );
       if (response.ok) {
         const data = await response.json();
@@ -583,7 +585,7 @@ const BlogDetail = () => {
         </section>
       )}
 
-      {/* Newsletter CTA */}
+      {/* Newsletter CTA
       <section className="py-16 bg-gradient-to-r from-purple-600 to-purple-700">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
@@ -604,7 +606,7 @@ const BlogDetail = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>
