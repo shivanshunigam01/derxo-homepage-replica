@@ -34,12 +34,18 @@ const Header = () => {
           >
             Blog
           </Link>
-          <a
-            href="#"
+          <Link
+            to="/product"
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
-            Contact Us
-          </a>
+            Products
+          </Link>
+          <Link
+            to="/contact"
+            className="text-foreground hover:text-primary transition-colors font-medium"
+          >
+            Contact us
+          </Link>
         </nav>
 
         {/* CTA Button */}
