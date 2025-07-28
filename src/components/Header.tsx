@@ -28,12 +28,12 @@ const Header = () => {
           >
             All Medicine
           </Link>
-          <a
-            href="/blog"
+          <Link
+            to="/blog"
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
             Blog
-          </a>
+          </Link>
           <a
             href="#"
             className="text-foreground hover:text-primary transition-colors font-medium"
