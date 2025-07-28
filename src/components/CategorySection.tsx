@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"; // Add this
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Brain, Activity, Zap, Shield, Pill } from "lucide-react";
 
@@ -41,6 +42,13 @@ const categories = [
 ];
 
 const CategorySection = () => {
+  const navigate = useNavigate(); 
+
+  const handleCategoryClick = (name) => {
+    const encodedQuery = encodeURIComponent(name);
+    navigate(`/all-medicines?query=${encodedQuery}`);
+  };
+
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -49,7 +57,8 @@ const CategorySection = () => {
             Search by Medical Conditions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Find the right medication for your specific health condition quickly and easily
+            Find the right medication for your specific health condition quickly
+            and easily
           </p>
         </div>
 
@@ -57,12 +66,15 @@ const CategorySection = () => {
           {categories.map((category, index) => {
             const IconComponent = category.icon;
             return (
-              <Card 
-                key={index} 
+              <Card
+                key={index}
+                onClick={() => handleCategoryClick(category.name)} // Add this
                 className="hover:shadow-card transition-all duration-300 cursor-pointer group border-2 hover:border-primary/20"
               >
                 <CardContent className="p-6 text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full ${category.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`w-16 h-16 mx-auto mb-4 rounded-full ${category.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                  >
                     <IconComponent className={`h-8 w-8 ${category.color}`} />
                   </div>
                   <h3 className="font-semibold text-sm md:text-base text-foreground leading-tight">
