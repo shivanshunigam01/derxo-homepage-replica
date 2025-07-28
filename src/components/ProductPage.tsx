@@ -581,7 +581,7 @@ const ProductPage = () => {
               </div>
 
               {/* FAQ Section */}
-              {/* <div className="bg-white rounded-2xl shadow-lg border border-blue-100 mb-8">
+              <div className="bg-white rounded-2xl shadow-lg border border-blue-100 mb-8">
                 <div className="p-6 border-b border-slate-200">
                   <h3 className="text-2xl font-bold text-slate-800">
                     Frequently Asked Questions
@@ -660,7 +660,7 @@ const ProductPage = () => {
                     ))}
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
