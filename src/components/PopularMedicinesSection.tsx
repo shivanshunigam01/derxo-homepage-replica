@@ -10,7 +10,7 @@ const medicines = [
     originalPrice: "$15.99",
     rating: 4.8,
     reviews: 1240,
-    inStock: true
+    inStock: true,
   },
   {
     name: "Lisinopril",
@@ -19,7 +19,7 @@ const medicines = [
     originalPrice: "$18.99",
     rating: 4.7,
     reviews: 987,
-    inStock: true
+    inStock: true,
   },
   {
     name: "Atorvastatin",
@@ -28,7 +28,7 @@ const medicines = [
     originalPrice: "$24.99",
     rating: 4.6,
     reviews: 756,
-    inStock: true
+    inStock: true,
   },
   {
     name: "Omeprazole",
@@ -37,7 +37,7 @@ const medicines = [
     originalPrice: "$28.99",
     rating: 4.9,
     reviews: 2100,
-    inStock: false
+    inStock: false,
   },
   {
     name: "Sertraline",
@@ -46,7 +46,7 @@ const medicines = [
     originalPrice: "$32.99",
     rating: 4.5,
     reviews: 543,
-    inStock: true
+    inStock: true,
   },
   {
     name: "Ibuprofen",
@@ -55,8 +55,8 @@ const medicines = [
     originalPrice: "$9.99",
     rating: 4.8,
     reviews: 3200,
-    inStock: true
-  }
+    inStock: true,
+  },
 ];
 
 const PopularMedicinesSection = () => {
@@ -74,8 +74,8 @@ const PopularMedicinesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {medicines.map((medicine, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="hover:shadow-card transition-all duration-300 group"
             >
               <CardContent className="p-6">
@@ -88,9 +88,11 @@ const PopularMedicinesSection = () => {
                       for {medicine.condition}
                     </p>
                   </div>
-                  <Badge 
+                  <Badge
                     variant={medicine.inStock ? "default" : "secondary"}
-                    className={medicine.inStock ? "bg-green-100 text-green-800" : ""}
+                    className={
+                      medicine.inStock ? "bg-green-100 text-green-800" : ""
+                    }
                   >
                     {medicine.inStock ? "In Stock" : "Out of Stock"}
                   </Badge>
@@ -108,7 +110,9 @@ const PopularMedicinesSection = () => {
                   <div className="flex items-center space-x-2">
                     <div className="flex items-center">
                       <span className="text-yellow-500">★</span>
-                      <span className="text-sm font-medium ml-1">{medicine.rating}</span>
+                      <span className="text-sm font-medium ml-1">
+                        {medicine.rating}
+                      </span>
                     </div>
                     <span className="text-sm text-muted-foreground">
                       ({medicine.reviews} reviews)
@@ -116,12 +120,12 @@ const PopularMedicinesSection = () => {
                   </div>
                 </div>
 
-                <Button 
-                  variant={medicine.inStock ? "default" : "secondary"} 
+                <Button
+                  variant={medicine.inStock ? "default" : "secondary"}
                   className="w-full"
                   disabled={!medicine.inStock}
                 >
-                  {medicine.inStock ? "Add to Cart" : "Notify When Available"}
+                  {medicine.inStock ? "Order Nowt" : "Notify When Available"}
                 </Button>
               </CardContent>
             </Card>

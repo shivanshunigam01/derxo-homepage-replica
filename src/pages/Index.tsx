@@ -6,6 +6,7 @@ import PopularMedicinesSection from "@/components/PopularMedicinesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import Footer from "@/components/Footer";
+import HealthcareExpertsSection from "@/components/HealthcareExpertsSection ";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <CategorySection />
+      <HealthcareExpertsSection />
       <PriceComparisonSection />
       <PopularMedicinesSection />
       <HowItWorksSection />

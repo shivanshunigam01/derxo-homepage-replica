@@ -209,7 +209,7 @@ const ProductPage = () => {
                   className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-xl"
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
-                  Add to Cart
+                  Order Now
                 </Button>
                 <Button
                   variant="outline"
@@ -579,7 +579,6 @@ const ProductPage = () => {
                   )}
                 </div>
               </div>
-
               {/* FAQ Section */}
               <div className="bg-white rounded-2xl shadow-lg border border-blue-100 mb-8">
                 <div className="p-6 border-b border-slate-200">
@@ -621,7 +620,6 @@ const ProductPage = () => {
                   </div>
                 </div>
               </div>
-
               Related Products
               <div className="bg-white rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-6 border-b border-slate-200">

@@ -1,105 +1,200 @@
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const priceData = [
   {
     category: "Blood Pressure",
-    startPrice: "$2.54",
-    originalPrice: "$17.95",
-    savings: "Save 86%",
-    color: "text-medical-red",
-    bgColor: "bg-medical-red/10"
-  },
-  {
-    category: "Cholesterol",
-    startPrice: "$2.54",
-    originalPrice: "$15.95",
-    savings: "Save 84%",
-    color: "text-orange-600",
-    bgColor: "bg-orange-100"
-  },
-  {
-    category: "Diabetes",
-    startPrice: "$9.17",
-    originalPrice: "$45.99",
+    derxoPrice: "$2",
+    shopPrice: "$20",
+    brandPrice: "$20",
     savings: "Save 80%",
-    color: "text-primary",
-    bgColor: "bg-primary/10"
+    bgColor: "bg-blue-500",
+    shopBgColor: "bg-green-500",
+    brandBgColor: "bg-orange-500",
+    savingsBgColor: "bg-red-500",
+  },
+  {
+    category: "ED Meds",
+    derxoPrice: "$2",
+    shopPrice: "$20",
+    brandPrice: "$20",
+    savings: "Save 80%",
+    bgColor: "bg-blue-400",
+    shopBgColor: "bg-green-400",
+    brandBgColor: "bg-orange-400",
+    savingsBgColor: "bg-red-400",
   },
   {
     category: "Mental Health",
-    startPrice: "$5.48",
-    originalPrice: "$29.99",
-    savings: "Save 82%",
-    color: "text-purple-600",
-    bgColor: "bg-purple-100"
-  },
-  {
-    category: "Pain Relief",
-    startPrice: "$1.24",
-    originalPrice: "$12.99",
-    savings: "Save 90%",
-    color: "text-green-600",
-    bgColor: "bg-green-100"
+    derxoPrice: "$2",
+    shopPrice: "$20",
+    brandPrice: "$20",
+    savings: "Save 80%",
+    bgColor: "bg-blue-500",
+    shopBgColor: "bg-green-500",
+    brandBgColor: "bg-orange-500",
+    savingsBgColor: "bg-red-500",
   },
   {
     category: "Acid Reflux",
-    startPrice: "$9.79",
-    originalPrice: "$48.99",
+    derxoPrice: "$2",
+    shopPrice: "$20",
+    brandPrice: "$20",
     savings: "Save 80%",
-    color: "text-blue-600",
-    bgColor: "bg-blue-100"
-  }
+    bgColor: "bg-blue-400",
+    shopBgColor: "bg-green-400",
+    brandBgColor: "bg-orange-400",
+    savingsBgColor: "bg-red-400",
+  },
+  {
+    category: "Cancer Meds",
+    derxoPrice: "$2",
+    shopPrice: "$20",
+    brandPrice: "$20",
+    savings: "Save 80%",
+    bgColor: "bg-blue-500",
+    shopBgColor: "bg-green-500",
+    brandBgColor: "bg-orange-500",
+    savingsBgColor: "bg-red-500",
+  },
 ];
 
 const PriceComparisonSection = () => {
   return (
-    <section className="py-16 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
             Price Comparison
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Compare prices and save up to 90% on your medications
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Compare prices and save up to 90% on your medications with our
+            transparent pricing
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {priceData.map((item, index) => (
-            <Card 
-              key={index} 
-              className="hover:shadow-card transition-all duration-300 cursor-pointer group"
-            >
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-lg text-foreground">
-                    {item.category}
-                  </h3>
-                  <Badge 
-                    variant="secondary" 
-                    className={`${item.bgColor} ${item.color} border-0 font-semibold`}
-                  >
-                    {item.savings}
-                  </Badge>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex items-baseline space-x-2">
-                    <span className="text-2xl font-bold text-primary">
-                      Starts {item.startPrice}
-                    </span>
-                    <span className="text-lg text-muted-foreground line-through">
-                      {item.originalPrice}
-                    </span>
+        {/* Table-style comparison */}
+        <div className="max-w-6xl mx-auto">
+          {/* Header Row */}
+          <div className="grid grid-cols-5 gap-2 mb-4">
+            <div className="h-16"></div> {/* Empty space for category column */}
+            {/* DERXO Header */}
+            <div className="relative">
+              <div className="bg-gray-300 rounded-t-2xl h-16 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-400 to-gray-300"></div>
+                <div className="relative z-10 flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                    <img
+                      src="/lovable-uploads/73995caa-6ca7-43f2-ba48-8f29d96cc2fa.png"
+                      alt="Derxo"
+                      className="h-10 w-50"
+                    />
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    Price per month with subscription
-                  </p>
+                  <span className="font-bold text-gray-800">DERXO</span>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            </div>
+            {/* Shop Price Header */}
+            <div className="relative">
+              <div className="bg-green-500 rounded-t-2xl h-16 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-400"></div>
+                <span className="relative z-10 font-bold text-white text-lg">
+                  Shop Price
+                </span>
+              </div>
+            </div>
+            {/* Brand Price Header */}
+            <div className="relative">
+              <div className="bg-orange-500 rounded-t-2xl h-16 flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-400"></div>
+                <span className="relative z-10 font-bold text-white text-lg">
+                  Brand Price
+                </span>
+              </div>
+            </div>
+            {/* Savings Header with icon */}
+            <div className="h-16 flex items-center justify-center">
+              <div className="flex flex-col items-center">
+                <div className="text-xl">💰</div>
+                <span className="font-bold text-blue-600 text-sm -rotate-6">
+                  SAVE
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Data Rows */}
+          <div className="space-y-2">
+            {priceData.map((item, index) => (
+              <div key={index} className="grid grid-cols-5 gap-2 group">
+                {/* Category */}
+                <div className="bg-gray-100 rounded-l-xl h-20 flex items-center justify-center group-hover:bg-gray-200 transition-colors duration-300">
+                  <span className="font-bold text-gray-800 text-lg px-4 text-center">
+                    {item.category}
+                  </span>
+                </div>
+
+                {/* DERXO Price */}
+                <div
+                  className={`${item.bgColor} h-20 flex items-center justify-center text-white relative overflow-hidden group-hover:scale-105 transition-transform duration-300`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 opacity-90"></div>
+                  <span className="relative z-10 font-bold text-xl">
+                    Starts {item.derxoPrice}
+                  </span>
+                </div>
+
+                {/* Shop Price */}
+                <div
+                  className={`${item.shopBgColor} h-20 flex items-center justify-center text-white relative overflow-hidden group-hover:scale-105 transition-transform duration-300`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-400 opacity-90"></div>
+                  <span className="relative z-10 font-bold text-xl">
+                    Starts {item.shopPrice}
+                  </span>
+                </div>
+
+                {/* Brand Price */}
+                <div
+                  className={`${item.brandBgColor} h-20 flex items-center justify-center text-white relative overflow-hidden group-hover:scale-105 transition-transform duration-300`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-400 opacity-90"></div>
+                  <span className="relative z-10 font-bold text-xl">
+                    Starts {item.brandPrice}
+                  </span>
+                </div>
+
+                {/* SAVE Cell */}
+                <div className="bg-red-500 h-20 flex items-center justify-center text-white font-bold rounded-r-xl group-hover:scale-105 transition-transform duration-300">
+                  <div className="flex items-center space-x-2">
+                    <div className="text-xl">💰</div>
+                    <span>SAVE</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-12">
+          <div className="inline-flex items-center space-x-2 bg-white rounded-full px-8 py-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 border-blue-100">
+            <span className="text-lg font-semibold text-gray-800">
+              Start saving today with DERXO
+            </span>
+            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold">→</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Info */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-500 text-sm">
+            * Prices shown are estimated. Actual prices may vary based on
+            location and insurance coverage.
+          </p>
         </div>
       </div>
     </section>
