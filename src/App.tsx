@@ -10,6 +10,7 @@ import MedicineDetail from "./components/MedicineDetail";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetails";
 import ProductPage from "./components/ProductPage";
+import ContactUs from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,8 @@ const App = () => (
           {/* Blog routes */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
+
+          <Route path="/contact" element={<ContactUs />} />
 
           <Route path="/medicines" />
 
