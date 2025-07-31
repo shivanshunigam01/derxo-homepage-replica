@@ -125,7 +125,7 @@ const PopularMedicinesSection = () => {
                   className="w-full"
                   disabled={!medicine.inStock}
                 >
-                  {medicine.inStock ? "Order Nowt" : "Notify When Available"}
+                  {medicine.inStock ? "Order Now" : "Notify When Available"}
                 </Button>
               </CardContent>
             </Card>

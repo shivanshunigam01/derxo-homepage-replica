@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -55,44 +56,44 @@ const Footer = () => {
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/all-medicines"
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   All Medicines
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/all-medicines"
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   Generic Medicines
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/blog"
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   Health Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/contact"
                   className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -191,9 +192,82 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+        {/* Certifications Section */}
+        <div className="mt-8 py-6 border-t border-b border-primary-foreground/20">
+          <div className="text-center mb-4">
+            <h4 className="text-lg font-semibold text-primary-foreground mb-2">
+              Trusted & Certified
+            </h4>
+            <p className="text-primary-foreground/70 text-sm">
+              Your safety and privacy are our top priorities
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-12">
+            {[
+              {
+                src: "/shared image.jpg",
+                alt: "LegitScript Certified",
+                link: "https://www.legitscript.com",
+              },
+              {
+                src: "/shared image (1).jpg",
+                alt: "NABP Accredited",
+                link: "https://nabp.pharmacy/programs/accreditations/digital-pharmacy/accredited-digital-pharmacies/",
+              },
+              { src: "/shared image (2).jpg", alt: "Best Seller", link: "#" },
+              {
+                src: "/shared image (3).jpg",
+                alt: "HIPAA Seal of Compliance",
+                link: "https://www.hhs.gov/hipaa/for-professionals/index.html",
+              },
+              {
+                src: "/shared image (4).jpg",
+                alt: "NCQA Accredited",
+                link: "https://www.ncqa.org",
+              },
+              {
+                src: "/shared image (5).jpg",
+                alt: "URAC Accredited",
+                link: "https://www.urac.org",
+              },
+              {
+                src: "/shared image (6).jpg",
+                alt: "BBB Accredited",
+                link: "https://www.bbb.org",
+              },
+              {
+                src: "/shared image (7).jpg",
+                alt: "Comodo Secure",
+                link: "https://www.comodo.com",
+              },
+              {
+                src: "/shared image (8).jpg",
+                alt: "ACHC Accredited",
+                link: "https://www.achc.org",
+              },
+            ].map((cert, index) => (
+              <a
+                key={index}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={cert.alt}
+              >
+                <div className="flex flex-col items-center group hover:shadow-md transition-shadow">
+                  <img
+                    src={cert.src}
+                    alt={cert.alt}
+                    className="h-24 max-w-[100px] object-contain transition-transform group-hover:scale-105 bg-white/10 p-2 rounded-lg"
+                  />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20">
+        <div className="mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-primary-foreground/80">
               <p>&copy; 2024 Derxo. All rights reserved.</p>

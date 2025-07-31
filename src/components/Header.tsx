@@ -6,13 +6,15 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img
-            src="/lovable-uploads/73995caa-6ca7-43f2-ba48-8f29d96cc2fa.png"
-            alt="Derxo"
-            className="h-10 w-auto"
-          />
-        </div>
+        <Link to={"/"}>
+          <div className="flex items-center space-x-2">
+            <img
+              src="/lovable-uploads/73995caa-6ca7-43f2-ba48-8f29d96cc2fa.png"
+              alt="Derxo"
+              className="h-10 w-auto"
+            />
+          </div>
+        </Link>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">

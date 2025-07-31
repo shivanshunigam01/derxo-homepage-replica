@@ -11,6 +11,8 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetails";
 import ProductPage from "./components/ProductPage";
 import ContactUs from "./pages/ContactPage";
+import WhatsAppContactWidget from "./components/WhatsAppContactWidget";
+import ScrollToTop from "./components/ScollToTop";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
+        <WhatsAppContactWidget />
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

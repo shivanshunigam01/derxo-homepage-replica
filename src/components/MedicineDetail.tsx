@@ -321,26 +321,40 @@ const MedicineDetail = () => {
                     {categoryMedicines.map((med) => (
                       <div
                         key={med._id}
-                        onClick={(e) => handleProductClick(med._id, e)}
-                        className={`cursor-pointer group border border-slate-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition ${
-                          viewMode === "list" ? "flex" : ""
+                        className={`border border-slate-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition ${
+                          viewMode === "list" ? "flex items-start gap-4" : ""
                         }`}
                       >
-                        <div className="flex-shrink-0 mr-4">
+                        {/* Icon */}
+                        <div className="flex-shrink-0">
                           <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
                             <Pill className="h-5 w-5 text-white" />
                           </div>
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-slate-800 group-hover:text-blue-600 mb-1">
+
+                        {/* Info */}
+                        <div className="flex-1 space-y-2">
+                          <h3
+                            onClick={(e) => handleProductClick(med._id, e)}
+                            className="font-semibold text-slate-800 hover:text-blue-600 cursor-pointer"
+                          >
                             {med.name}
                           </h3>
-                          <p className="text-sm text-slate-500 mb-1">
+                          <p className="text-sm text-slate-500">
                             {med.strength} • {med.type}
                           </p>
                           <p className="text-slate-600 text-sm line-clamp-2">
                             {med.description}
                           </p>
+
+                          <div className="pt-2">
+                            <button
+                              onClick={(e) => handleProductClick(med._id, e)}
+                              className="mt-2 inline-flex items-center px-4 py-1.5 border border-blue-600 text-blue-600 hover:bg-blue-50 text-sm font-medium rounded-lg transition-all duration-200"
+                            >
+                              Know More
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}
