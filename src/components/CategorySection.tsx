@@ -1,209 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
 
-// Animated SVG Icon Component
-const AnimatedIcon = ({ type, isHovered }) => {
+// Category Icon Component
+const CategoryIcon = ({ type, isSelected }) => {
   const getIcon = () => {
     switch (type) {
       case "blood-pressure":
         return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Heart */}
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
               <path
                 d="M50,85 C50,85 20,65 20,45 C20,35 30,25 40,25 C45,25 50,30 50,30 C50,30 55,25 60,25 C70,25 80,35 80,45 C80,65 50,85 50,85 Z"
                 fill="#ef4444"
-                className={`transition-all duration-500 ${
-                  isHovered ? "animate-pulse" : ""
-                }`}
               />
-              {/* Pulse line */}
-              <g className={`${isHovered ? "animate-bounce" : ""}`}>
-                <path
-                  d="M15,50 L25,50 L30,40 L35,60 L40,30 L45,70 L50,45 L55,55 L60,45 L65,50 L85,50"
-                  stroke="white"
-                  strokeWidth="2"
-                  fill="none"
-                  className="animate-pulse"
-                />
-              </g>
-              {/* Stethoscope */}
-              <circle cx="70" cy="35" r="8" fill="#374151" opacity="0.8" />
               <path
-                d="M70,27 Q75,20 85,25"
-                stroke="#374151"
-                strokeWidth="3"
-                fill="none"
-              />
-            </svg>
-          </div>
-        );
-
-      case "cholesterol":
-        return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Heart character */}
-              <path
-                d="M50,75 C50,75 25,60 25,45 C25,35 35,25 45,25 C47,25 50,28 50,28 C50,28 53,25 55,25 C65,25 75,35 75,45 C75,60 50,75 50,75 Z"
-                fill="#ef4444"
-                className={`transition-all duration-300 ${
-                  isHovered ? "scale-110" : ""
-                }`}
-              />
-              {/* Eyes */}
-              <circle cx="42" cy="40" r="3" fill="white" />
-              <circle cx="58" cy="40" r="3" fill="white" />
-              <circle cx="42" cy="40" r="1.5" fill="black" />
-              <circle cx="58" cy="40" r="1.5" fill="black" />
-              {/* Mouth */}
-              <path
-                d="M45,48 Q50,53 55,48"
+                d="M15,50 L25,50 L30,40 L35,60 L40,30 L45,70 L50,45 L55,55 L60,45 L65,50 L85,50"
                 stroke="white"
                 strokeWidth="2"
                 fill="none"
               />
-
-              {/* Cholesterol molecules */}
-              <g
-                className={`${isHovered ? "animate-spin" : ""}`}
-                style={{ transformOrigin: "20px 25px" }}
-              >
-                <circle cx="20" cy="25" r="4" fill="#fbbf24" opacity="0.8" />
-                <circle cx="25" cy="20" r="3" fill="#f59e0b" opacity="0.6" />
-                <circle cx="15" cy="20" r="3" fill="#f59e0b" opacity="0.6" />
-              </g>
-
-              <g
-                className={`${isHovered ? "animate-spin" : ""}`}
-                style={{ transformOrigin: "80px 30px" }}
-              >
-                <circle cx="80" cy="30" r="4" fill="#fbbf24" opacity="0.8" />
-                <circle cx="85" cy="25" r="3" fill="#f59e0b" opacity="0.6" />
-                <circle cx="75" cy="25" r="3" fill="#f59e0b" opacity="0.6" />
-              </g>
             </svg>
           </div>
         );
-
+      case "cholesterol":
+        return (
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
+              <path
+                d="M50,75 C50,75 25,60 25,45 C25,35 35,25 45,25 C47,25 50,28 50,28 C50,28 53,25 55,25 C65,25 75,35 75,45 C75,60 50,75 50,75 Z"
+                fill="#f97316"
+              />
+            </svg>
+          </div>
+        );
       case "diabetes":
         return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Blood drop character */}
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
               <path
                 d="M50,80 C35,80 25,65 25,50 C25,35 50,15 50,15 C50,15 75,35 75,50 C75,65 65,80 50,80 Z"
                 fill="#ef4444"
-                className={`transition-all duration-300 ${
-                  isHovered ? "animate-bounce" : ""
-                }`}
-              />
-              {/* Face */}
-              <circle cx="42" cy="45" r="3" fill="white" />
-              <circle cx="58" cy="45" r="3" fill="white" />
-              <circle cx="42" cy="45" r="1.5" fill="black" />
-              <circle cx="58" cy="45" r="1.5" fill="black" />
-              <path
-                d="M45,55 Q50,60 55,55"
-                stroke="white"
-                strokeWidth="2"
-                fill="none"
-              />
-
-              {/* Glucose meter */}
-              <rect
-                x="65"
-                y="25"
-                width="15"
-                height="20"
-                rx="2"
-                fill="#374151"
-              />
-              <rect x="67" y="27" width="11" height="8" fill="#22d3ee" />
-              <text
-                x="72.5"
-                y="32"
-                textAnchor="middle"
-                fontSize="4"
-                fill="white"
-              >
-                120
-              </text>
-
-              {/* Test strip */}
-              <rect
-                x="70"
-                y="45"
-                width="5"
-                height="8"
-                fill="#fbbf24"
-                className={`${isHovered ? "animate-pulse" : ""}`}
               />
             </svg>
           </div>
         );
-
       case "mental-health":
         return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Head silhouette */}
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
               <ellipse cx="50" cy="55" rx="25" ry="30" fill="#3b82f6" />
-
-              {/* Brain */}
-              <g className={`${isHovered ? "animate-pulse" : ""}`}>
-                <path
-                  d="M35,40 Q30,35 35,30 Q40,25 45,30 Q50,25 55,30 Q60,25 65,30 Q70,35 65,40 Q70,45 65,50 Q60,55 55,50 Q50,55 45,50 Q40,55 35,50 Q30,45 35,40 Z"
-                  fill="#22d3ee"
-                />
-                {/* Brain details */}
-                <path
-                  d="M40,35 Q45,32 50,35 Q55,32 60,35"
-                  stroke="#0891b2"
-                  strokeWidth="1"
-                  fill="none"
-                />
-                <path
-                  d="M38,42 Q43,39 48,42 Q53,39 58,42"
-                  stroke="#0891b2"
-                  strokeWidth="1"
-                  fill="none"
-                />
-              </g>
-
-              {/* Positive thoughts */}
-              <g className={`${isHovered ? "animate-bounce" : ""}`}>
-                <circle cx="25" cy="25" r="3" fill="#10b981" opacity="0.8" />
-                <text
-                  x="25"
-                  y="27"
-                  textAnchor="middle"
-                  fontSize="6"
-                  fill="white"
-                >
-                  +
-                </text>
-                <circle cx="75" cy="20" r="3" fill="#10b981" opacity="0.8" />
-                <text
-                  x="75"
-                  y="22"
-                  textAnchor="middle"
-                  fontSize="6"
-                  fill="white"
-                >
-                  +
-                </text>
-              </g>
+              <path
+                d="M35,40 Q30,35 35,30 Q40,25 45,30 Q50,25 55,30 Q60,25 65,30 Q70,35 65,40"
+                fill="#22d3ee"
+              />
             </svg>
           </div>
         );
-
       case "pain-inflammation":
         return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Body silhouette */}
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
               <ellipse
                 cx="50"
                 cy="60"
@@ -212,130 +68,70 @@ const AnimatedIcon = ({ type, isHovered }) => {
                 fill="#6b7280"
                 opacity="0.3"
               />
-
-              {/* Pain indicators */}
-              <g className={`${isHovered ? "animate-pulse" : ""}`}>
-                {/* Lightning bolt pain */}
-                <path
-                  d="M40,30 L35,45 L42,45 L38,65 L50,45 L43,45 L48,30 Z"
-                  fill="#ef4444"
-                  className="animate-pulse"
-                />
-                <path
-                  d="M60,35 L55,50 L62,50 L58,70 L70,50 L63,50 L68,35 Z"
-                  fill="#f97316"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                />
-              </g>
-
-              {/* Shield protection */}
-              <g
-                className={`transition-all duration-500 ${
-                  isHovered ? "scale-110" : ""
-                }`}
-              >
-                <path
-                  d="M20,20 Q20,15 25,15 L35,15 Q40,15 40,20 L40,35 Q32.5,40 25,35 Q17.5,40 10,35 L10,20 Q10,15 15,15 L25,15 Q30,15 30,20"
-                  fill="#10b981"
-                  opacity="0.8"
-                />
-                <text
-                  x="25"
-                  y="25"
-                  textAnchor="middle"
-                  fontSize="8"
-                  fill="white"
-                >
-                  +
-                </text>
-              </g>
+              <path
+                d="M40,30 L35,45 L42,45 L38,65 L50,45 L43,45 L48,30 Z"
+                fill="#10b981"
+              />
             </svg>
           </div>
         );
-
       case "acid-reflux":
         return (
-          <div className="w-20 h-20 mx-auto relative">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              {/* Stomach */}
+          <div className="w-12 h-12 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-8 h-8">
               <path
                 d="M50,25 C35,25 25,35 25,50 C25,65 30,75 40,80 C45,82 55,82 60,80 C70,75 75,65 75,50 C75,35 65,25 50,25 Z"
                 fill="#fbbf24"
-                className={`transition-all duration-300 ${
-                  isHovered ? "animate-pulse" : ""
-                }`}
-              />
-
-              {/* Person silhouette */}
-              <ellipse
-                cx="50"
-                cy="45"
-                rx="18"
-                ry="25"
-                fill="#f59e0b"
-                opacity="0.3"
-              />
-
-              {/* Acid bubbles rising */}
-              <g className={`${isHovered ? "animate-bounce" : ""}`}>
-                <circle
-                  cx="45"
-                  cy="70"
-                  r="2"
-                  fill="#ef4444"
-                  opacity="0.8"
-                  className="animate-ping"
-                />
-                <circle
-                  cx="55"
-                  cy="65"
-                  r="2"
-                  fill="#ef4444"
-                  opacity="0.6"
-                  className="animate-ping"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <circle
-                  cx="50"
-                  cy="58"
-                  r="1.5"
-                  fill="#ef4444"
-                  opacity="0.4"
-                  className="animate-ping"
-                  style={{ animationDelay: "1s" }}
-                />
-              </g>
-
-              {/* Pills */}
-              <g
-                className={`transition-all duration-500 ${
-                  isHovered ? "scale-110" : ""
-                }`}
-              >
-                <ellipse cx="20" cy="30" rx="6" ry="3" fill="#10b981" />
-                <ellipse cx="80" cy="25" rx="6" ry="3" fill="#3b82f6" />
-                <ellipse cx="15" cy="50" rx="6" ry="3" fill="#8b5cf6" />
-              </g>
-
-              {/* Relief arrow */}
-              <path
-                d="M30,15 L35,10 L30,5"
-                stroke="#10b981"
-                strokeWidth="2"
-                fill="none"
-                className={`${isHovered ? "animate-bounce" : ""}`}
               />
             </svg>
           </div>
         );
-
       default:
-        return <div className="w-20 h-20 bg-gray-200 rounded-full"></div>;
+        return <div className="w-12 h-12 bg-gray-200 rounded-full"></div>;
     }
   };
 
   return getIcon();
+};
+
+// Medicine Card Component
+const MedicineCard = ({ medicine, index }) => {
+  const originalPrice = (Math.random() * 50 + 30).toFixed(2);
+  const discountedPrice = (
+    Number(originalPrice) *
+    (0.3 + Math.random() * 0.4)
+  ).toFixed(2);
+
+  return (
+    <div className="bg-white border-2 border-gray-200 hover:shadow-lg transition-all duration-300 w-full rounded-xl px-4 py-6 min-h-[240px] flex flex-col justify-between">
+      <div className="text-center flex-1">
+        <h3 className="font-semibold text-gray-900 mb-2 text-sm leading-tight min-h-[40px] flex items-center justify-center">
+          {medicine.name || `Medicine ${index + 1}`}
+        </h3>
+        <p className="text-xs text-gray-600 mb-4 min-h-[32px] line-clamp-2">
+          {medicine.description ||
+            medicine.generic ||
+            `Generic, ${Math.floor(Math.random() * 90 + 10)} mg, ${Math.floor(
+              Math.random() * 90 + 10
+            )} Tablets`}
+        </p>
+
+        <div className="mb-4">
+          <div className="text-xs text-gray-500 line-through mb-1">
+            ${originalPrice}
+          </div>
+          <div className="text-xl font-bold text-gray-900 mb-1">
+            ${discountedPrice}
+          </div>
+          <div className="text-xs text-gray-600">Price as low as</div>
+        </div>
+      </div>
+
+      <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold text-sm py-2.5 px-4 rounded-md transition-all duration-300 hover:shadow-md mt-auto">
+        GET COUPON
+      </button>
+    </div>
+  );
 };
 
 const categories = [
@@ -343,97 +139,141 @@ const categories = [
     name: "Blood Pressure",
     icon: "blood-pressure",
     bgColor: "bg-red-50",
-    borderColor: "hover:border-red-200",
-    textColor: "text-red-600",
+    borderColor: "border-red-300",
+    hoverBorderColor: "hover:border-red-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe8484b",
   },
   {
-    name: "Cholesterol",
+    name: "High/Low Cholesterol",
     icon: "cholesterol",
     bgColor: "bg-orange-50",
-    borderColor: "hover:border-orange-200",
-    textColor: "text-orange-600",
+    borderColor: "border-orange-300",
+    hoverBorderColor: "hover:border-orange-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe8484c",
   },
   {
-    name: "Diabetes",
+    name: "High/Low Diabetes",
     icon: "diabetes",
-    bgColor: "bg-blue-50",
-    borderColor: "hover:border-blue-200",
-    textColor: "text-blue-600",
+    bgColor: "bg-red-50",
+    borderColor: "border-red-300",
+    hoverBorderColor: "hover:border-red-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe8483c",
   },
   {
     name: "Mental Health",
     icon: "mental-health",
     bgColor: "bg-blue-50",
-    borderColor: "hover:border-blue-200",
-    textColor: "text-blue-600",
+    borderColor: "border-blue-300",
+    hoverBorderColor: "hover:border-blue-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe8485c",
   },
   {
-    name: "Pain & Inflammation",
+    name: "Pain and Inflammation",
     icon: "pain-inflammation",
     bgColor: "bg-green-50",
-    borderColor: "hover:border-green-200",
-    textColor: "text-green-600",
+    borderColor: "border-green-300",
+    hoverBorderColor: "hover:border-green-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe84866",
   },
   {
     name: "Acid Reflux",
     icon: "acid-reflux",
     bgColor: "bg-yellow-50",
-    borderColor: "hover:border-yellow-200",
-    textColor: "text-yellow-600",
+    borderColor: "border-yellow-300",
+    hoverBorderColor: "hover:border-yellow-400",
+    api: "https://derxo-backend-working.onrender.com/api/medicines/67eef0080a8f6e6b9fe84821",
   },
 ];
 
 const CategorySection = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
- const navigate = useNavigate(); 
-  const handleCategoryClick = (name) => {
-    // Mo const encodedQuery = encodeURIComponent(name);
-        const encodedQuery = encodeURIComponent(name);
-    navigate(`/all-medicines?query=${encodedQuery}`);
-    
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [medicineData, setMedicineData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const random = categories[Math.floor(Math.random() * categories.length)];
+    fetchMedicines(random);
+  }, []);
+
+  const getRandomItems = (array, count = 6) => {
+    const shuffled = [...array].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  const fetchMedicines = async (category) => {
+    setSelectedCategory(category.name);
+    setLoading(true);
+    try {
+      const response = await fetch(category.api);
+      const data = await response.json();
+      const allMedicines = data || [];
+      const randomMedicines = getRandomItems(allMedicines, 6);
+      setMedicineData(randomMedicines);
+    } catch (err) {
+      console.error(err);
+      setMedicineData([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Search by Medical Conditions
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            Search by medical conditions
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Find the right medication for your specific health condition quickly
-            and easily
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category, index) => (
-            <Card
-              key={index}
-              onClick={() => handleCategoryClick(category.name)}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`hover:shadow-2xl transition-all duration-500 cursor-pointer group border-2 ${category.borderColor} ${category.bgColor} transform hover:-translate-y-2 hover:scale-105`}
-            >
-              <CardContent className="p-8 text-center">
-                <div className="mb-6 relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full blur-xl"></div>
-                  <AnimatedIcon
-                    type={category.icon}
-                    isHovered={hoveredIndex === index}
-                  />
-                </div>
-                <h3
-                  className={`text-xl font-semibold ${category.textColor} group-hover:scale-105 transition-transform duration-300`}
-                >
+        {/* Categories Grid */}
+        <div className="mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 max-w-6xl mx-auto">
+            {categories.map((category, index) => (
+              <button
+                key={index}
+                onClick={() => fetchMedicines(category)}
+                className={`flex flex-col items-center justify-center gap-3 px-4 py-6 rounded-xl border-2 transition-all duration-300 w-full min-h-[120px] ${
+                  selectedCategory === category.name
+                    ? `${category.bgColor} ${category.borderColor} shadow-md transform scale-105`
+                    : `bg-white border-gray-200 ${category.hoverBorderColor} hover:shadow-md hover:transform hover:scale-102`
+                }`}
+              >
+                <CategoryIcon
+                  type={category.icon}
+                  isSelected={selectedCategory === category.name}
+                />
+                <span className="font-semibold text-gray-800 text-sm text-center leading-tight">
                   {category.name}
-                </h3>
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full"></div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Medicine Cards Grid */}
+        <div>
+          {loading ? (
+            <div className="text-center py-8">
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+              <p className="mt-2 text-purple-500 font-medium text-sm">
+                Loading medicines...
+              </p>
+            </div>
+          ) : medicineData.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+              {medicineData.map((medicine, index) => (
+                <MedicineCard key={index} medicine={medicine} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-500 text-sm">
+                No medicines available for this category.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
