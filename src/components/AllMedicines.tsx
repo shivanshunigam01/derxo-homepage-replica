@@ -33,7 +33,7 @@ const AllMedicines = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://derxo-backend-working.onrender.com/api/medicines/categories"
+          "http://31.97.205.42:5000/api/medicines/categories"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch medicines");

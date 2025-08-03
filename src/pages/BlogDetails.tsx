@@ -40,7 +40,7 @@ const BlogDetail = () => {
         setLoading(true);
         // Assuming you have a single blog endpoint
         const response = await fetch(
-          `https://derxo-backend-working.onrender.com/api/blogs/${id}`
+          `http://31.97.205.42:5000/api/blogs/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch blog details");
@@ -66,7 +66,7 @@ const BlogDetail = () => {
   const fetchRelatedBlogs = async (category) => {
     try {
       const response = await fetch(
-        `https://derxo-backend-working.onrender.com/api/blogs?page=1&limit=3`
+        `http://31.97.205.42:5000/api/blogs?page=1&limit=3`
       );
       if (response.ok) {
         const data = await response.json();

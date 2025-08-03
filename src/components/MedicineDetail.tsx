@@ -41,7 +41,7 @@ const MedicineDetail = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://derxo-backend-working.onrender.com/api/medicines/medicineCategory/id/${id}`
+          `http://31.97.205.42:5000/api/medicines/medicineCategory/id/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch medicine details");
         const data = await response.json();
@@ -60,7 +60,7 @@ const MedicineDetail = () => {
       try {
         setMedicinesLoading(true);
         const response = await fetch(
-          `https://derxo-backend-working.onrender.com/api/medicines/${id}`
+          `http://31.97.205.42:5000/api/medicines/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch category medicines");
         const data = await response.json();
