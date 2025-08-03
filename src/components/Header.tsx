@@ -59,12 +59,6 @@ const Header = () => {
             Free Consultation
           </Button>
         </Link>
-        <Link to={"/contact"}>
-          {/* CTA Button for desktop */}
-          <Button variant="consultation" size="lg" className="hidden sm:flex">
-            Free Consultation
-          </Button>
-        </Link>
 
         {/* Mobile menu button */}
         <Button

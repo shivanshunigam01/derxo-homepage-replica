@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CustomerTestimonials from "@/pages/CustomerTestimonials";
 
 const MedicineDetail = () => {
   const { id } = useParams();
@@ -102,6 +103,12 @@ const MedicineDetail = () => {
     navigate(`/product/${productId}`, { state: { product: selectedProduct } });
   };
 
+  const relatedProducts = [
+    { id: 1, name: "Similar Medicine A", price: "$19.99", rating: 4.1 },
+    { id: 2, name: "Alternative Treatment B", price: "$22.99", rating: 4.3 },
+    { id: 3, name: "Complementary Product C", price: "$16.99", rating: 4.0 },
+    { id: 4, name: "Enhanced Formula D", price: "$28.99", rating: 4.4 },
+  ];
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
@@ -397,6 +404,45 @@ const MedicineDetail = () => {
           </div>
         </div>
       </section>
+      <CustomerTestimonials />
+      <div className="bg-white rounded-2xl shadow-lg border border-blue-100">
+        <div className="p-6 border-b border-slate-200">
+          <h3 className="text-2xl font-bold text-slate-800">
+            Buy Our Other Medicines
+          </h3>
+        </div>
+        <div className="p-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {relatedProducts.map((relatedProduct) => (
+              <div
+                key={relatedProduct.id}
+                className="bg-slate-50 rounded-xl p-4 hover:shadow-md transition-shadow"
+              >
+                <div className="bg-white rounded-lg p-4 mb-3 text-center">
+                  <Pill className="h-8 w-8 text-blue-600 mx-auto" />
+                </div>
+                <h4 className="font-semibold text-slate-800 mb-2">
+                  {relatedProduct.name}
+                </h4>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-bold text-blue-600">
+                    {relatedProduct.price}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="text-sm text-slate-600">
+                      {relatedProduct.rating}
+                    </span>
+                  </div>
+                </div>
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                  View Details
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );

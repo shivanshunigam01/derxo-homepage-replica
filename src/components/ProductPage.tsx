@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -204,23 +204,26 @@ const ProductPage = () => {
 
               {/* Quick Actions */}
               <div className="flex gap-4">
-                <Button
-                  disabled={!product.stockAvailable}
-                  className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-xl"
-                >
-                  <ShoppingCart className="h-5 w-5 mr-2" />
-                  Order Now
-                </Button>
+                <Link to="/contact">
+                  <Button
+                    disabled={!product.stockAvailable}
+                    className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-xl"
+                  >
+                    <ShoppingCart className="h-5 w-5 mr-2" />
+                    Order Now
+                  </Button>
+                </Link>
+
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-blue-600"
+                  className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-xl"
                 >
                   <Heart className="h-5 w-5 mr-2" />
                   Wishlist
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-blue-600"
+                  className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-xl"
                 >
                   <Share2 className="h-5 w-5" />
                 </Button>
@@ -620,7 +623,7 @@ const ProductPage = () => {
                   </div>
                 </div>
               </div>
-              Related Products
+
               <div className="bg-white rounded-2xl shadow-lg border border-blue-100">
                 <div className="p-6 border-b border-slate-200">
                   <h3 className="text-2xl font-bold text-slate-800">
