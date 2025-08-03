@@ -39,12 +39,12 @@ const Header = () => {
           >
             Blog
           </Link>
-          <Link
+          {/* <Link
             to="/product"
             className="text-foreground hover:text-primary transition-colors font-medium"
           >
             Products
-          </Link>
+          </Link> */}
           <Link
             to="/contact"
             className="text-foreground hover:text-primary transition-colors font-medium"

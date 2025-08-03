@@ -363,7 +363,15 @@ const MedicineCard = ({ medicine, index }) => {
         </div>
       </div>
 
-      <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold text-sm py-2.5 px-4 rounded-md transition-all duration-300 hover:shadow-md hover:transform hover:scale-105 mt-auto">
+      <button
+        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold text-sm py-2.5 px-4 rounded-md transition-all duration-300 hover:shadow-md hover:transform hover:scale-105 mt-auto"
+        onClick={() =>
+          window.open(
+            "https://api.whatsapp.com/send/?phone=14074429820&text=Hi%21+I'm+interested+in+your+services.+Can+you+help+me%3F&type=phone_number&app_absent=0",
+            "_blank"
+          )
+        }
+      >
         GET COUPON
       </button>
     </div>
