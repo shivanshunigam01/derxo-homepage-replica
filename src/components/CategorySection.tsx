@@ -435,8 +435,12 @@ const CategorySection = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const random = categories[Math.floor(Math.random() * categories.length)];
-    fetchMedicines(random);
+    const defaultCategory = categories.find(
+      (cat) => cat.name === "Blood Pressure"
+    );
+    if (defaultCategory) {
+      fetchMedicines(defaultCategory);
+    }
   }, []);
 
   const getRandomItems = (array, count = 6) => {
