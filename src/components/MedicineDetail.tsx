@@ -280,29 +280,7 @@ const MedicineDetail = () => {
                     <Package className="h-6 w-6 text-blue-600" />
                     Available Medicines ({categoryMedicines.length})
                   </h2>
-                  <div className="flex border border-slate-300 rounded-lg overflow-hidden">
-                    {/* <button
-                      onClick={() => setViewMode("grid")}
-                      className={`px-3 py-2 text-sm flex items-center gap-2 ${
-                        viewMode === "grid"
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-600 hover:bg-slate-50"
-                      }`}
-                    >
-                      {/* <Grid className="h-4 w-4" /> Grid */}
-                    {/* </button>  */}
-
-                    {/* <button
-                      onClick={() => setViewMode("list")}
-                      className={`px-3 py-2 text-sm flex items-center gap-2 ${
-                        viewMode === "list"
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-600 hover:bg-slate-50"
-                      }`}
-                    > */}
-                    {/* <List className="h-4 w-4" /> List
-                    </button> */}
-                  </div>
+                  <div className="flex border border-slate-300 rounded-lg overflow-hidden"></div>
                 </div>
 
                 {medicinesLoading ? (
@@ -318,53 +296,62 @@ const MedicineDetail = () => {
                     No medicines available.
                   </p>
                 ) : (
-                  <div
-                    className={
-                      viewMode === "grid"
-                        ? "grid grid-cols-1 md:grid-cols-2 gap-6"
-                        : "space-y-4"
-                    }
-                  >
-                    {categoryMedicines.map((med) => (
-                      <div
-                        key={med._id}
-                        className={`border border-slate-200 rounded-lg p-6 hover:border-blue-300 hover:shadow-md transition ${
-                          viewMode === "list" ? "flex items-start gap-4" : ""
-                        }`}
-                      >
-                        {/* Icon */}
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                            <Pill className="h-5 w-5 text-white" />
-                          </div>
-                        </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {categoryMedicines.map((med) => {
+                      // Generate random prices for display (you can replace with actual pricing logic)
+                      const originalPrice = (Math.random() * 30 + 50).toFixed(
+                        2
+                      );
+                      const discountedPrice = (
+                        Number(originalPrice) * 0.7
+                      ).toFixed(2);
 
-                        {/* Info */}
-                        <div className="flex-1 space-y-2">
-                          <h3
-                            onClick={(e) => handleProductClick(med._id, e)}
-                            className="font-semibold text-slate-800 hover:text-blue-600 cursor-pointer"
-                          >
-                            {med.name}
-                          </h3>
-                          <p className="text-sm text-slate-500">
-                            {med.strength} • {med.type}
-                          </p>
-                          <p className="text-slate-600 text-sm line-clamp-2">
-                            {med.description}
-                          </p>
-
-                          <div className="pt-2">
-                            <button
+                      return (
+                        <div
+                          key={med._id}
+                          className="bg-white border-2 border-gray-200 hover:shadow-lg transition-all duration-300 w-full rounded-xl px-4 py-6 min-h-[280px] flex flex-col justify-between hover:transform hover:scale-105"
+                        >
+                          <div className="text-center flex-1">
+                            <h3
+                              className="font-semibold text-gray-900 mb-2 text-sm leading-tight min-h-[40px] flex items-center justify-center cursor-pointer hover:text-blue-600"
                               onClick={(e) => handleProductClick(med._id, e)}
-                              className="mt-2 inline-flex items-center px-4 py-1.5 border border-blue-600 text-blue-600 hover:bg-blue-50 text-sm font-medium rounded-lg transition-all duration-200"
                             >
-                              Know More
-                            </button>
+                              {med.name}
+                            </h3>
+
+                            <p className="text-xs text-gray-600 mb-4 min-h-[32px] line-clamp-2">
+                              {med.strength} • {med.type}
+                            </p>
+
+                            <div className="mb-4">
+                              <div className="text-xs text-gray-500 line-through mb-1">
+                                ${originalPrice}
+                              </div>
+                              <div className="text-xl font-bold text-gray-900 mb-1">
+                                ${discountedPrice}
+                              </div>
+                              <div className="text-xs text-gray-600">
+                                Price as low as
+                              </div>
+                            </div>
                           </div>
+
+                          <button
+                            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold text-sm py-2.5 px-4 rounded-md transition-all duration-300 hover:shadow-md hover:transform hover:scale-105 mt-auto"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              // You can replace this with your desired action
+                              window.open(
+                                "https://api.whatsapp.com/send/?phone=14074429820&text=Hi%21+I'm+interested+in+your+services.+Can+you+help+me%3F&type=phone_number&app_absent=0",
+                                "_blank"
+                              );
+                            }}
+                          >
+                            GET COUPON
+                          </button>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
