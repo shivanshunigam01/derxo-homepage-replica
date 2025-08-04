@@ -10,7 +10,7 @@ const Header = () => {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/">
-          <div className="flex items-center space-x-2 pl-0">
+          <div className="flex items-center space-x-2 pl-20">
             <img
               src="/lovable-uploads/73995caa-6ca7-43f2-ba48-8f29d96cc2fa.png"
               alt="Derxo"
