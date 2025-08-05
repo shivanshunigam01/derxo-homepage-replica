@@ -133,7 +133,7 @@ const ProductPage = () => {
       if (!product) {
         try {
           const res = await fetch(
-            `http://31.97.205.42:5000/api/medicines/${id}`
+            `https://derxo-backend-working.onrender.com/api/medicines/${id}`
           );
           if (!res.ok) throw new Error("Failed to fetch product");
           const data = await res.json();

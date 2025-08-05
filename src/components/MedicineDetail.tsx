@@ -41,7 +41,7 @@ const MedicineDetail = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `http://31.97.205.42:5000/api/medicines/medicineCategory/id/${id}`
+          `https://derxo-backend-working.onrender.com/api/medicines/medicineCategory/id/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch medicine details");
         const data = await response.json();
@@ -60,7 +60,7 @@ const MedicineDetail = () => {
       try {
         setMedicinesLoading(true);
         const response = await fetch(
-          `http://31.97.205.42:5000/api/medicines/${id}`
+          `https://derxo-backend-working.onrender.com/api/medicines/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch category medicines");
         const data = await response.json();
@@ -342,7 +342,7 @@ const MedicineDetail = () => {
                               e.stopPropagation();
                               // You can replace this with your desired action
                               window.open(
-                                "https://api.whatsapp.com/send/?phone=14074429820&text=Hi%21+I'm+interested+in+your+services.+Can+you+help+me%3F&type=phone_number&app_absent=0",
+                                "https:/api.whatsapp.com/send/?phone=14074429820&text=Hi%21+I'm+interested+in+your+services.+Can+you+help+me%3F&type=phone_number&app_absent=0",
                                 "_blank"
                               );
                             }}
