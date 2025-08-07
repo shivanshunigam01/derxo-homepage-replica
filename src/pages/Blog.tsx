@@ -40,7 +40,7 @@ const Blog = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://fields-garcia-developed-consider.trycloudflare.com//api/blogs?page=${currentPage}&limit=${limit}`
+          `https://choir-anthony-warning-functioning.trycloudflare.com//api/blogs?page=${currentPage}&limit=${limit}`
         );
         if (!response.ok) throw new Error("Failed to fetch blogs");
         const data = await response.json();
