@@ -38,7 +38,7 @@ const HomepageBlogSection = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://derxo-backend-working.onrender.com/api/blogs?page=1&limit=10"
+          "https://fields-garcia-developed-consider.trycloudflare.com//api/blogs?page=1&limit=10"
         );
 
         if (!response.ok) {

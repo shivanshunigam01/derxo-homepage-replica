@@ -133,7 +133,7 @@ const ProductPage = () => {
       if (!product) {
         try {
           const res = await fetch(
-            `https://derxo-backend-working.onrender.com/api/medicines/${id}`
+            `https://fields-garcia-developed-consider.trycloudflare.com//api/medicines/${id}`
           );
           if (!res.ok) throw new Error("Failed to fetch product");
           const data = await res.json();

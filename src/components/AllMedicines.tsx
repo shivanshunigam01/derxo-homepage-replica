@@ -33,7 +33,7 @@ const AllMedicines = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://derxo-backend-working.onrender.com/api/medicines/categories"
+          "https://fields-garcia-developed-consider.trycloudflare.com//api/medicines/categories"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch medicines");
