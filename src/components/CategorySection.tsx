@@ -410,7 +410,7 @@ const categories = [
     bgColor: "bg-red-50",
     borderColor: "border-red-300",
     hoverBorderColor: "hover:border-red-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe8484b",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe8484b",
   },
   {
     name: "High/Low Cholesterol",
@@ -418,7 +418,7 @@ const categories = [
     bgColor: "bg-orange-50",
     borderColor: "border-orange-300",
     hoverBorderColor: "hover:border-orange-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe8484c",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe8484c",
   },
   {
     name: "High/Low Diabetes",
@@ -426,7 +426,7 @@ const categories = [
     bgColor: "bg-red-50",
     borderColor: "border-red-300",
     hoverBorderColor: "hover:border-red-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe8483c",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe8483c",
   },
   {
     name: "Mental Health",
@@ -434,7 +434,7 @@ const categories = [
     bgColor: "bg-blue-50",
     borderColor: "border-blue-300",
     hoverBorderColor: "hover:border-blue-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe8485c",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe8485c",
   },
   {
     name: "Pain and Inflammation",
@@ -442,7 +442,7 @@ const categories = [
     bgColor: "bg-green-50",
     borderColor: "border-green-300",
     hoverBorderColor: "hover:border-green-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe84866",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe84866",
   },
   {
     name: "Acid Reflux",
@@ -450,7 +450,7 @@ const categories = [
     bgColor: "bg-yellow-50",
     borderColor: "border-yellow-300",
     hoverBorderColor: "hover:border-yellow-400",
-    api: "https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/67eef0080a8f6e6b9fe84821",
+    api: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/67eef0080a8f6e6b9fe84821",
   },
 ];
 

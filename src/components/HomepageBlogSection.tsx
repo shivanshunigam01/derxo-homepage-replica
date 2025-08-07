@@ -38,7 +38,7 @@ const HomepageBlogSection = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://choir-anthony-warning-functioning.trycloudflare.com//api/blogs?page=1&limit=10"
+          "https://choir-anthony-warning-functioning.trycloudflare.com/api/blogs?page=1&limit=10"
         );
 
         if (!response.ok) {

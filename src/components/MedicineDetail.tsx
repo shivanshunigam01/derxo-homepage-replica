@@ -41,7 +41,7 @@ const MedicineDetail = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/medicineCategory/id/${id}`
+          `https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch medicine details");
         const data = await response.json();
@@ -60,7 +60,7 @@ const MedicineDetail = () => {
       try {
         setMedicinesLoading(true);
         const response = await fetch(
-          `https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/${id}`
+          `https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch category medicines");
         const data = await response.json();

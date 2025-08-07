@@ -133,7 +133,7 @@ const ProductPage = () => {
       if (!product) {
         try {
           const res = await fetch(
-            `https://choir-anthony-warning-functioning.trycloudflare.com//api/medicines/${id}`
+            `https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/${id}`
           );
           if (!res.ok) throw new Error("Failed to fetch product");
           const data = await res.json();
