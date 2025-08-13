@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Star,
   Quote,
@@ -9,7 +10,6 @@ import {
   Calendar,
   CheckCircle,
 } from "lucide-react";
-import { useState, useEffect } from "react";
 
 const trustBadges = [
   {
@@ -117,6 +117,60 @@ const trustpilotReviews = [
     date: "2 weeks ago",
     verified: true,
   },
+  {
+    name: "Sofia Martins",
+    location: "Portugal",
+    rating: 5,
+    title: "Exceptional Support and Service",
+    text: "The attention to detail was impressive. Every question I had was answered quickly, and the entire process felt effortless. Truly professional.",
+    date: "3 weeks ago",
+    verified: true,
+  },
+  {
+    name: "David Nguyen",
+    location: "Australia",
+    rating: 5,
+    title: "Exactly What I Needed",
+    text: "From the first interaction, I knew I was in good hands. The end result was flawless, and the team genuinely cared about my satisfaction.",
+    date: "1 month ago",
+    verified: true,
+  },
+  {
+    name: "Maria Garcia",
+    location: "Spain",
+    rating: 5,
+    title: "Incredible Value",
+    text: "Not only was the quality outstanding, but the value for money was exceptional. The team delivered more than promised and ahead of schedule.",
+    date: "1 month ago",
+    verified: true,
+  },
+  {
+    name: "John Smith",
+    location: "New Zealand",
+    rating: 5,
+    title: "Seamless Experience",
+    text: "From start to finish, everything was handled professionally. The communication was clear and the results exceeded my expectations completely.",
+    date: "1 month ago",
+    verified: true,
+  },
+  {
+    name: "Anna Kowalski",
+    location: "Poland",
+    rating: 5,
+    title: "Outstanding Results",
+    text: "The team's expertise really shows in the final product. They understood exactly what I needed and delivered it perfectly. Highly professional service.",
+    date: "2 months ago",
+    verified: true,
+  },
+  {
+    name: "Carlos Silva",
+    location: "Brazil",
+    rating: 5,
+    title: "Excellent Communication",
+    text: "What impressed me most was the constant communication and updates. The team was always available to answer questions and provide guidance.",
+    date: "2 months ago",
+    verified: true,
+  },
 ];
 
 const TrustpilotWidget = () => {
@@ -156,7 +210,7 @@ const TrustpilotWidget = () => {
 
       {/* Recent Reviews */}
       <div className="space-y-4">
-        {trustpilotReviews.map((review, index) => (
+        {trustpilotReviews.slice(0, 5).map((review, index) => (
           <div
             key={index}
             className="border-b border-gray-100 pb-4 last:border-0"
@@ -239,6 +293,11 @@ const CustomerTestimonials = () => {
   const getVisibleTestimonials = () => {
     const start = currentSlide * 3;
     return testimonials.slice(start, start + 3);
+  };
+
+  const getVisibleTrustpilotReviews = () => {
+    const start = currentSlide * 3;
+    return trustpilotReviews.slice(start, start + 3);
   };
 
   return (
@@ -329,12 +388,14 @@ const CustomerTestimonials = () => {
             </div>
           </div>
         </div>
+
         <div
           className="relative"
           onMouseEnter={() => setIsAutoPlay(false)}
           onMouseLeave={() => setIsAutoPlay(true)}
         >
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
+          {/* Main Testimonials Grid */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
             {getVisibleTestimonials().map((item, index) => (
               <div
                 key={`${currentSlide}-${index}`}
@@ -378,169 +439,80 @@ const CustomerTestimonials = () => {
                 </div>
               </div>
             ))}
+          </div>
 
-            {/* Trustpilot Reviews Mixed In */}
-            {currentSlide === 0 && (
-              <div className="group relative bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
-                {/* Trustpilot Badge */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-white font-bold text-sm">T</div>
-                </div>
-
-                {/* Trustpilot Gradient Border Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-teal-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-0.5 -z-10"></div>
-
-                <div className="relative z-10">
-                  {/* Trustpilot Header */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="text-xs text-green-600 font-semibold uppercase tracking-wider">
-                      Trustpilot Review
-                    </div>
-                    <CheckCircle className="w-3 h-3 text-green-500" />
+          {/* Trustpilot Reviews Section */}
+          <div className="mb-8">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {getVisibleTrustpilotReviews().map((review, index) => (
+                <div
+                  key={`trustpilot-${currentSlide}-${index}`}
+                  className="group relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                >
+                  {/* Trustpilot Badge */}
+                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-green-500 rounded-xl flex items-center justify-center shadow-md">
+                    <div className="text-white font-bold text-xs">T</div>
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed mb-6 text-base">
-                    "{trustpilotReviews[0].text}"
-                  </p>
+                  {/* Trustpilot Gradient Border Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-teal-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-0.5 -z-10"></div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        {trustpilotReviews[0].name
+                  <div className="relative z-10">
+                    {/* Verified Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="text-xs text-green-600 font-semibold uppercase tracking-wider">
+                        Verified Review
+                      </div>
+                      <CheckCircle className="w-3 h-3 text-green-500" />
+                    </div>
+
+                    {/* Stars and Date */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="w-3 h-3 fill-green-500 text-green-500"
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-gray-500 flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {review.date}
+                      </span>
+                    </div>
+
+                    {/* Review Title */}
+                    <div className="font-bold text-sm text-gray-900 mb-2">
+                      {review.title}
+                    </div>
+
+                    {/* Review Text */}
+                    <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                      "{review.text}"
+                    </p>
+
+                    {/* Author Info */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                        {review.name
                           .split(" ")
                           .map((n) => n[0])
                           .join("")}
                       </div>
                       <div>
-                        <div className="font-bold text-gray-900">
-                          {trustpilotReviews[0].name}
+                        <div className="font-semibold text-sm text-gray-900">
+                          {review.name}
                         </div>
-                        <div className="text-sm text-gray-500">
-                          {trustpilotReviews[0].location}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-green-500 text-green-500"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {currentSlide === 1 && (
-              <div className="group relative bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
-                {/* Trustpilot Badge */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-white font-bold text-sm">T</div>
-                </div>
-
-                {/* Trustpilot Gradient Border Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-teal-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-0.5 -z-10"></div>
-
-                <div className="relative z-10">
-                  {/* Trustpilot Header */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="text-xs text-green-600 font-semibold uppercase tracking-wider">
-                      Trustpilot Review
-                    </div>
-                    <CheckCircle className="w-3 h-3 text-green-500" />
-                  </div>
-
-                  <p className="text-gray-700 leading-relaxed mb-6 text-base">
-                    "{trustpilotReviews[1].text}"
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        {trustpilotReviews[1].name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">
-                          {trustpilotReviews[1].name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {trustpilotReviews[1].location}
+                        <div className="text-xs text-gray-500">
+                          {review.location}
                         </div>
                       </div>
                     </div>
-
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-green-500 text-green-500"
-                        />
-                      ))}
-                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-
-            {currentSlide === 2 && (
-              <div className="group relative bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl border border-white/20 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3">
-                {/* Trustpilot Badge */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-white font-bold text-sm">T</div>
-                </div>
-
-                {/* Trustpilot Gradient Border Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-teal-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -m-0.5 -z-10"></div>
-
-                <div className="relative z-10">
-                  {/* Trustpilot Header */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="text-xs text-green-600 font-semibold uppercase tracking-wider">
-                      Trustpilot Review
-                    </div>
-                    <CheckCircle className="w-3 h-3 text-green-500" />
-                  </div>
-
-                  <p className="text-gray-700 leading-relaxed mb-6 text-base">
-                    "{trustpilotReviews[2].text}"
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        {trustpilotReviews[2].name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">
-                          {trustpilotReviews[2].name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {trustpilotReviews[2].location}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 fill-green-500 text-green-500"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
 
           {/* Navigation Dots */}

@@ -11,11 +11,43 @@ const HeroSection = () => {
     navigate(`/all-medicines?query=${encodeURIComponent(search)}`);
   };
 
+  const popularMedicines = [
+    {
+      id: "67eef0080a8f6e6b9fe8483c",
+      name: "Ozempic",
+      url: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/67eef0080a8f6e6b9fe8483c",
+    },
+    {
+      id: "67eef0080a8f6e6b9fe8484c",
+      name: "Atorvastatin",
+      url: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/67eef0080a8f6e6b9fe8484c",
+    },
+    {
+      id: "67eef0080a8f6e6b9fe84855",
+      name: "Wegovy",
+      url: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/67eef0080a8f6e6b9fe84855",
+    },
+    {
+      id: "67eef0080a8f6e6b9fe8483f",
+      name: "Tadalafil",
+      url: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/67eef0080a8f6e6b9fe8483f",
+    },
+    {
+      id: "67eef0080a8f6e6b9fe84831",
+      name: "Eliquis",
+      url: "https://choir-anthony-warning-functioning.trycloudflare.com/api/medicines/medicineCategory/id/67eef0080a8f6e6b9fe84831",
+    },
+  ];
+
+  const handlePopularClick = (med) => {
+    navigate(`/medicine/${med.id}`);
+  };
+
   return (
     <section className="pt-24 pb-16 bg-gradient-to-br from-yellow-200 via-yellow-300 to-yellow-400">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-800 mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
             Stop paying too much for prescriptions
           </h1>
           <p className="text-xl md:text-2xl text-slate-600 mb-12">
@@ -46,22 +78,14 @@ const HeroSection = () => {
               Popular Searches
             </h3>
             <div className="flex flex-wrap gap-3">
-              {[
-                "Ozempic",
-                "Atorvastatin",
-                "Wegovy",
-                "Tadalafil",
-                "Eliquis",
-              ].map((med) => (
+              {popularMedicines.map((med) => (
                 <Button
-                  key={med}
+                  key={med.id}
                   variant="outline"
-                  onClick={() =>
-                    navigate(`/all-medicines?query=${encodeURIComponent(med)}`)
-                  }
+                  onClick={() => handlePopularClick(med)}
                   className="rounded-full bg-white/80 border-slate-200 text-slate-700 hover:bg-white hover:shadow-md"
                 >
-                  {med}
+                  {med.name}
                 </Button>
               ))}
             </div>

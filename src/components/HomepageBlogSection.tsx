@@ -16,6 +16,15 @@ const HomepageBlogSection = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Demo fallback images from /public
+  const demoImages = ["/blog.jpg", "/blog1.jpg", "/blog2.jpg"];
+
+  // Get consistent random fallback image for each blog
+  const getFallbackImage = (id) => {
+    const index = Math.abs(id?.charCodeAt(0) || 0) % demoImages.length;
+    return demoImages[index];
+  };
+
   // Helper function to strip HTML tags
   const stripHtml = (html) => {
     if (!html) return "";
@@ -47,7 +56,6 @@ const HomepageBlogSection = () => {
 
         const data = await response.json();
 
-        // Handle different response formats
         let blogData = [];
         if (Array.isArray(data)) {
           blogData = data;
@@ -71,7 +79,6 @@ const HomepageBlogSection = () => {
   }, []);
 
   const handleBlogClick = (blogId) => {
-    // Navigate to blog detail page
     window.location.href = `/blog/${blogId}`;
   };
 
@@ -124,19 +131,13 @@ const HomepageBlogSection = () => {
     );
   }
 
-  // Since we don't have featured/popular flags from API, we'll create them based on content
-  const featuredBlogs = blogs.slice(0, 3); // First 3 blogs as featured
-  const popularBlogs = blogs.slice(3, 6); // Next 3 blogs as popular
+  const featuredBlogs = blogs.slice(0, 3);
+  const popularBlogs = blogs.slice(3, 6);
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <div className="text-center mb-16">
-          {/* <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <Sparkles className="h-4 w-4" />
-            Health & Wellness Blog
-          </div> */}
           <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
             Popular Topics
           </h2>
@@ -163,18 +164,20 @@ const HomepageBlogSection = () => {
                 className="group bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-blue-300 transition-all duration-500 cursor-pointer overflow-hidden transform hover:-translate-y-1"
               >
                 {/* Featured Image */}
-                <div className="aspect-video bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 flex items-center justify-center relative overflow-hidden">
-                  <BookOpen className="h-12 w-12 text-blue-500 group-hover:scale-110 transition-transform duration-300" />
+                <div className="aspect-video overflow-hidden relative">
+                  <img
+                    src={getFallbackImage(blog._id)}
+                    alt={blog.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                   {index === 0 && (
                     <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                       Latest
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                 </div>
 
                 <div className="p-6">
-                  {/* Category */}
                   <div className="mb-4">
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getCategoryColor(
@@ -185,18 +188,15 @@ const HomepageBlogSection = () => {
                     </span>
                   </div>
 
-                  {/* Title */}
                   <h4 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors mb-3 line-clamp-2 leading-tight">
                     {blog.title}
                   </h4>
 
-                  {/* Excerpt */}
                   <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4">
                     {blog.excerpt ||
                       stripHtml(blog.content).substring(0, 150) + "..."}
                   </p>
 
-                  {/* Meta Information */}
                   <div className="flex items-center justify-between text-xs text-slate-500 mb-4">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
@@ -220,7 +220,6 @@ const HomepageBlogSection = () => {
                     </div>
                   </div>
 
-                  {/* Author & Read More */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
@@ -241,7 +240,7 @@ const HomepageBlogSection = () => {
           </div>
         </div>
 
-        {/* Popular Articles - Compact List */}
+        {/* Popular Articles */}
         {popularBlogs.length > 0 && (
           <div className="mb-12">
             <div className="flex items-center justify-between mb-8">
@@ -259,8 +258,12 @@ const HomepageBlogSection = () => {
                   className="group bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-lg hover:border-orange-300 transition-all duration-300 cursor-pointer overflow-hidden p-6"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <BookOpen className="h-6 w-6 text-orange-500" />
+                    <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                      <img
+                        src={blog.image || getFallbackImage(blog._id)}
+                        alt={blog.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
@@ -297,7 +300,6 @@ const HomepageBlogSection = () => {
           </div>
         )}
 
-        {/* View All Button */}
         <div className="text-center">
           <button
             onClick={handleViewAllBlogs}

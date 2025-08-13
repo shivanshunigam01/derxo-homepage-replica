@@ -3,17 +3,26 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const phoneNumber = "14074429820";
+  const whatsappMessage = encodeURIComponent(
+    "Hi! I'm interested in your services. Can you help me?"
+  );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+  const handleContactClick = () => {
+    window.location.href = "/contact";
+  };
+
+  const handleWhatsAppClick = () => {
+    window.open(whatsappUrl, "_blank");
+  };
+
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            {/* <img
-              src="/favicon.png"
-              alt="Derxo"
-              className="h-10 w-10 rounded-lg shadow-md"
-            /> */}
             <p className="text-primary-foreground/80 leading-relaxed">
               Derxo is your trusted online pharmacy providing affordable,
               FDA-approved medications with free consultations from licensed
@@ -192,6 +201,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
         {/* Certifications Section */}
         <div className="mt-8 py-6 border-t border-b border-primary-foreground/20">
           <div className="text-center mb-4">
@@ -202,7 +212,6 @@ const Footer = () => {
               Your safety and privacy are our top priorities
             </p>
           </div>
-
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-12">
             {[
               {
@@ -265,14 +274,27 @@ const Footer = () => {
             ))}
           </div>
         </div>
-
+        {/* Call & WhatsApp Buttons */}
+        <div className="mt-8 flex w-full">
+          <button
+            onClick={handleContactClick}
+            className="bg-blue-500 text-white py-3 px-6 rounded-l-lg hover:bg-blue-600 transition w-1/2"
+          >
+            Call Now
+          </button>
+          <button
+            onClick={handleWhatsAppClick}
+            className="bg-green-500 text-white py-3 px-6 rounded-r-lg hover:bg-green-600 transition w-1/2"
+          >
+            WhatsApp
+          </button>
+        </div>
         {/* Bottom Section */}
         <div className="mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-primary-foreground/80">
               <p>&copy; 2024 Derxo. All rights reserved.</p>
             </div>
-
             <div className="flex items-center space-x-4">
               <span className="text-primary-foreground/80">Country:</span>
               <select className="bg-primary-foreground/10 text-primary-foreground border border-primary-foreground/20 rounded px-3 py-1">
@@ -282,7 +304,6 @@ const Footer = () => {
               </select>
             </div>
           </div>
-
           <div className="mt-4 text-center text-sm text-primary-foreground/60">
             <p>
               Trusted by over 1,000,000 customers | FDA Approved Medications |

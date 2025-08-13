@@ -364,7 +364,7 @@ const MedicineCard = ({ medicine, index }) => {
   ).toFixed(2);
 
   return (
-    <div className="bg-white border-2 border-gray-200 hover:shadow-lg transition-all duration-300 w-full rounded-xl px-4 py-6 min-h-[240px] flex flex-col justify-between hover:transform hover:scale-105">
+    <div className="bg-white border-2 border-gray-200 hover:shadow-lg transition-all duration-300 w-full rounded-xl px-4 py-4  flex flex-col justify-between hover:transform hover:scale-105">
       <div className="text-center flex-1">
         <h3 className="font-semibold text-gray-900 mb-2 text-sm leading-tight min-h-[40px] flex items-center justify-center">
           {medicine.name || `Medicine ${index + 1}`}
@@ -507,7 +507,7 @@ const CategorySection = () => {
               <button
                 key={index}
                 onClick={() => fetchMedicines(category)}
-                className={`flex flex-col items-center justify-center gap-4 px-6 py-8 rounded-xl border-2 transition-all duration-300 w-full min-h-[240px] hover:shadow-lg hover:transform hover:scale-105 ${
+                className={`flex flex-col items-center justify-center gap-4 px-4 py-4 rounded-xl border-2 transition-all duration-300 w-full  hover:shadow-lg hover:transform hover:scale-105 ${
                   selectedCategory === category.name
                     ? `${category.bgColor} ${category.borderColor} shadow-lg transform scale-105 border-3`
                     : `bg-white border-gray-200 ${category.hoverBorderColor} hover:shadow-md`

@@ -35,6 +35,18 @@ const Blog = () => {
   const [viewMode, setViewMode] = useState("grid");
   const [limit] = useState(10);
 
+  // Define demo images for fallback
+  const demoImages = [
+    "https://images.unsplash.com/photo-1580281658621-86a2286ef0a4?auto=format&fit=crop&w=800&q=80", // Medicine pills
+    "https://images.unsplash.com/photo-1588776814546-5849e04e1cbd?auto=format&fit=crop&w=800&q=80", // Doctor with stethoscope
+    "https://images.unsplash.com/photo-1615461066841-2d3b52710b49?auto=format&fit=crop&w=800&q=80", // Medical research
+    "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80", // Syringes and vials
+    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80", // Hospital bed
+  ];
+
+  const getRandomImage = () => {
+    return demoImages[Math.floor(Math.random() * demoImages.length)];
+  };
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -79,6 +91,19 @@ const Blog = () => {
     setCurrentPage(1);
   };
 
+  // Preload fallback images from /public/blog2.jpg to /public/blog20.jpg
+  const blogImages = Array.from({ length: 20 }, (_, i) => `/blog${i + 1}.jpg`);
+
+  const getBlogImage = (blogId, index) => {
+    if (blogId) {
+      const hash = blogId
+        .toString()
+        .split("")
+        .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      return blogImages[hash % blogImages.length];
+    }
+    return blogImages[index % blogImages.length];
+  };
   const handlePageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -275,11 +300,9 @@ const Blog = () => {
                   >
                     {viewMode === "grid" ? (
                       <>
-                        {blog.featuredImage && (
-                          <div className="aspect-video bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                            <BookOpen className="h-12 w-12 text-blue-400" />
-                          </div>
-                        )}
+                        <div className="aspect-video overflow-hidden">
+                          <img src="/blog2.jpg" alt="Blog 1" />
+                        </div>
                         <div className="p-6">
                           <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
                             <div className="flex items-center gap-1">
@@ -322,8 +345,8 @@ const Blog = () => {
                       </>
                     ) : (
                       <>
-                        <div className="w-48 h-32 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <BookOpen className="h-8 w-8 text-blue-400" />
+                        <div className="w-48 h-32 rounded-lg overflow-hidden flex-shrink-0">
+                          <img src="/blog.jpg" alt="Blog" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-4 text-sm text-slate-500 mb-2">
