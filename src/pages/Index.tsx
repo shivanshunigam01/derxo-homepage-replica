@@ -10,6 +10,7 @@ import HealthcareExpertsSection from "@/components/HealthcareExpertsSection ";
 import CustomerTestimonials from "./CustomerTestimonials";
 import BlogDetail from "./BlogDetails";
 import HomepageBlogSection from "@/components/HomepageBlogSection";
+import QuickContactForm from "@/components/QuickContactForm";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <HealthcareExpertsSection />
       <PriceComparisonSection />
       <PopularMedicinesSection />
+      {/* <QuickContactForm /> */}
       <HowItWorksSection />
       <CustomerTestimonials />
       <WhyChooseSection />

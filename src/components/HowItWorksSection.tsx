@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import QuickContactForm from "./QuickContactForm";
 
 // Custom SVG Vector Components
 const SearchVector = ({ className, color }) => (
@@ -412,6 +413,8 @@ const HowItWorksSection = () => {
             </svg>
           </div>
         </div>
+        {/* <span>Start Your Order Now</span> */}
+        <QuickContactForm />
       </div>
     </section>
   );
