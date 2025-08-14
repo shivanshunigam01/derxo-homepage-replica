@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const medicines = [
   {
@@ -119,14 +120,15 @@ const PopularMedicinesSection = () => {
                     </span>
                   </div>
                 </div>
-
-                <Button
-                  variant={medicine.inStock ? "default" : "secondary"}
-                  className="w-full"
-                  disabled={!medicine.inStock}
-                >
-                  {medicine.inStock ? "Order Now" : "Notify When Available"}
-                </Button>
+                <Link to="/contact">
+                  <Button
+                    variant={medicine.inStock ? "default" : "secondary"}
+                    className="w-full"
+                    disabled={!medicine.inStock}
+                  >
+                    {medicine.inStock ? "Order Now" : "Notify When Available"}
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}

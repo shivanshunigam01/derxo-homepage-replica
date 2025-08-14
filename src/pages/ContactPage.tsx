@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const contactMethods = [
   {
@@ -61,7 +63,6 @@ const ContactUs = () => {
     subject: "",
     message: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
@@ -71,17 +72,28 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = () => {
-    setIsSubmitting(true);
+  const handleSubmit = async () => {
+    // Basic validation
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
+      toast.error("Please fill all required fields.");
+      return;
+    }
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    try {
+      setIsSubmitting(true);
+      // Replace with your real API endpoint
+      const response = await axios.post(
+        "https://choir-anthony-warning-functioning.trycloudflare.com/api/contact/create",
+        formData
+      );
 
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
+      if (response.status === 201) {
+        toast.success("Message sent successfully!");
         setFormData({
           name: "",
           email: "",
@@ -89,12 +101,19 @@ const ContactUs = () => {
           subject: "",
           message: "",
         });
-      }, 3000);
-    }, 1500);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to send message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Toaster position="top-right" />
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-6">
@@ -161,133 +180,119 @@ const ContactUs = () => {
                 </h2>
               </div>
 
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
+              <div className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Name */}
+                  <div className="relative">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Your Name *
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Enter your name"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Message Sent Successfully!
-                  </h3>
-                  <p className="text-gray-600">
-                    Thank you for reaching out. We'll get back to you within 24
-                    hours.
-                  </p>
+
+                  {/* Email */}
+                  <div className="relative">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Enter your email"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <div className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="relative">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Your Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Enter your name"
-                          required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                        />
-                      </div>
-                    </div>
 
+                {/* Company & Subject */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="relative">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Company
+                    </label>
                     <div className="relative">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
-                      </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="Enter your email"
-                          required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="relative">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Company
-                      </label>
-                      <div className="relative">
-                        <Building className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          placeholder="Your company name"
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="relative">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
-                      </label>
-                      <div className="relative">
-                        <Globe className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          placeholder="Message subject"
-                          required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
-                        />
-                      </div>
+                      <Building className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        placeholder="Your company name"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
                     </div>
                   </div>
 
                   <div className="relative">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                      Subject *
                     </label>
                     <div className="relative">
-                      <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                      <textarea
-                        name="message"
-                        value={formData.message}
+                      <Globe className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                      <input
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
                         onChange={handleInputChange}
-                        placeholder="Write your message here..."
-                        required
-                        rows={6}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-none"
-                      ></textarea>
+                        placeholder="Message subject"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
                     </div>
                   </div>
-
-                  <button
-                    onClick={handleSubmit}
-                    disabled={isSubmitting}
-                    className="w-full bg-blue-600 text-white font-medium py-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Sending Message...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
                 </div>
-              )}
+
+                {/* Message */}
+                <div className="relative">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
+                  <div className="relative">
+                    <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Write your message here..."
+                      rows={6}
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 text-white font-medium py-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Sending Message...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
